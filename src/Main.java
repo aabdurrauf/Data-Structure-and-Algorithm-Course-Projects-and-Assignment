@@ -72,6 +72,16 @@ public class Main {
         System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
         liste.enable(ISG);
         System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
+
+        liste.disable(BilDon);
+        System.out.println("\nsemester 2 with bilgisayar donanimi disabled: ");
+        liste.listSemester(2)
+                .forEach(ders -> System.out.println(ders.ders_ismi));
+
+        liste.disable(IntroAlgorithm);
+        liste.disable(Physics2);
+        liste.showDisabled();
+
     }
 }
 
@@ -234,7 +244,8 @@ class LinkedList{
         System.out.println("Disabled nodes: ");
         while(temp != null){
             if (!temp.enable){
-                System.out.println(temp.ders.ders_kodu);
+                System.out.println(temp.ders.ders_kodu
+                        + " - " + temp.ders.ders_ismi);
             }
             temp = temp.next;
         }
@@ -260,11 +271,13 @@ class Ders{
 class Node{
     Ders ders;
     Node next;
+    Node nextSameSemester;
     boolean enable;
 
     public Node(Ders ders){
         this.ders = ders;
         this.enable = true;
         this.next = null;
+        this.nextSameSemester = null;
     }
 }
