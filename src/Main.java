@@ -67,6 +67,11 @@ public class Main {
             System.out.println(listeNext2.ders.ders_ismi);
             listeNext2 = liste.nextInSemester();
         }
+
+        liste.disable(ISG);
+        System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
+        liste.enable(ISG);
+        System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
     }
 }
 
@@ -111,7 +116,7 @@ class LinkedList{
             temp = temp.next;
         }
         // control enable
-        while (!temp.enable){
+        while (temp != null && !temp.enable){
             temp = temp.next;
             pointer++;
         }
