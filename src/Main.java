@@ -24,69 +24,100 @@ public class Main {
         Ders Physics2 = new Ders("Fizik 2", "FZK1072",
                 "Dr. Öğr. Üyesi Ömer Akgün", 2, 4);
 
-        LinkedList liste = new LinkedList();
-        // randomly adding Nodes to the linked list
-        liste.add(new Node(Math2));
-        liste.add(new Node(Math1));
-        liste.add(new Node(BilDon));
-        liste.add(new Node(LinearAlg));
-        liste.add(new Node(ISG));
-        liste.add(new Node(IntroAlgorithm));
-        liste.add(new Node(IntroComputer));
-        liste.add(new Node(Physics1));
-        liste.add(new Node(BilProg1));
-        liste.add(new Node(Physics2));
+        Ders LogicGate = new Ders("Mantık Devreleri", "BLM2007",
+                "Dr. Öğr. Üyesi Ali Sarıkaş", 3, 5);
 
 
-        System.out.println("liste boyutu: " + liste.size());
-        System.out.println("\nders kodu MAT1087: " + liste.getByCode("MAT1087").ders_ismi);
-        System.out.println("\nsemester 1: ");
-        liste.listSemester(1).
-                forEach(ders -> System.out.println(ders.ders_ismi));
-        System.out.println("\n2-4 index: ");
-        liste.getByRange(2, 4).
-                forEach(ders -> System.out.println(ders.ders_ismi));
+//        LinkedList liste = new LinkedList();
+//        // randomly adding Nodes to the linked list
+//        liste.add(new Node(Math2));
+//        liste.add(new Node(Math1));
+//        liste.add(new Node(BilDon));
+//        liste.add(new Node(LinearAlg));
+//        liste.add(new Node(ISG));
+//        liste.add(new Node(IntroAlgorithm));
+//        liste.add(new Node(IntroComputer));
+//        liste.add(new Node(Physics1));
+//        liste.add(new Node(BilProg1));
+//        liste.add(new Node(Physics2));
+//
+//
+//        System.out.println("liste boyutu: " + liste.size());
+//        System.out.println("\nders kodu MAT1087: " + liste.getByCode("MAT1087").ders_ismi);
+//        System.out.println("\nsemester 1: ");
+//        liste.listSemester(1).
+//                forEach(ders -> System.out.println(ders.ders_ismi));
+//        System.out.println("\n2-4 index: ");
+//        liste.getByRange(2, 4).
+//                forEach(ders -> System.out.println(ders.ders_ismi));
+//
+//        liste.remove(LinearAlg);
+//        liste.remove(IntroComputer);
+//        System.out.println("\nafter removing two nodes: ");
+//        liste.listSemester(1).
+//                forEach(ders -> System.out.println(ders.ders_ismi));
+//
+//        System.out.println("\nusing next method: ");
+//        Node listeNext = liste.next();
+//        while(listeNext != null){
+//            System.out.println(listeNext.ders.ders_ismi);
+//            listeNext = liste.next();
+//        }
+//        liste.setPointerToZero();
+//
+//        System.out.println("\nusing next in semester method: ");
+//        Node listeNext2 = liste.nextInSemester();
+//        while(listeNext2 != null){
+//            System.out.println(listeNext2.ders.ders_ismi);
+//            listeNext2 = liste.nextInSemester();
+//        }
+//
+//        liste.disable(ISG);
+//        System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
+//        liste.enable(ISG);
+//        System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
+//
+//        liste.disable(BilDon);
+//        System.out.println("\nsemester 2 with bilgisayar donanimi disabled: ");
+//        liste.listSemester(2)
+//                .forEach(ders -> System.out.println(ders.ders_ismi));
+//
+//        liste.disable(IntroAlgorithm);
+//        liste.disable(Physics2);
+//        liste.showDisabled();
 
-        liste.remove(LinearAlg);
-        liste.remove(IntroComputer);
-        System.out.println("\nafter removing two nodes: ");
-        liste.listSemester(1).
-                forEach(ders -> System.out.println(ders.ders_ismi));
+        CircularLinkedList liste2 = new CircularLinkedList();
+        liste2.add(new Node(Math2));
+        liste2.add(new Node(Math1));
+        liste2.add(new Node(BilDon));
+        liste2.add(new Node(LinearAlg));
+        liste2.add(new Node(ISG));
+        liste2.add(new Node(LogicGate)); // semester 3
+        liste2.add(new Node(IntroAlgorithm));
+        liste2.add(new Node(IntroComputer));
+        liste2.add(new Node(Physics1));
+        liste2.add(new Node(BilProg1));
+        liste2.add(new Node(Physics2));
 
-        System.out.println("\nusing next method: ");
-        Node listeNext = liste.next();
-        while(listeNext != null){
-            System.out.println(listeNext.ders.ders_ismi);
-            listeNext = liste.next();
+        System.out.println();
+        liste2.showInSemester(1);
+        System.out.println();
+        liste2.showInSemester(2);
+        System.out.println();
+        liste2.showInSemester(3);
+
+        System.out.println("\ncircular linked list using next method: ");
+        Node circularListeNext = liste2.next();
+        while(circularListeNext != null){
+            System.out.println(circularListeNext.ders.ders_ismi);
+            circularListeNext = liste2.next();
         }
-        liste.setPointerToZero();
-
-        System.out.println("\nusing next in semester method: ");
-        Node listeNext2 = liste.nextInSemester();
-        while(listeNext2 != null){
-            System.out.println(listeNext2.ders.ders_ismi);
-            listeNext2 = liste.nextInSemester();
-        }
-
-        liste.disable(ISG);
-        System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
-        liste.enable(ISG);
-        System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
-
-        liste.disable(BilDon);
-        System.out.println("\nsemester 2 with bilgisayar donanimi disabled: ");
-        liste.listSemester(2)
-                .forEach(ders -> System.out.println(ders.ders_ismi));
-
-        liste.disable(IntroAlgorithm);
-        liste.disable(Physics2);
-        liste.showDisabled();
-
+        liste2.setPointerToZero();
     }
 }
 
 class LinkedList{
-    private Node head;
+    protected Node head;
 
     public LinkedList(){
         head = null;
@@ -252,6 +283,82 @@ class LinkedList{
     }
 }
 
+class CircularLinkedList extends LinkedList{
+    @Override
+    public void add(Node node){
+        super.add(node);
+
+        // set up the circular linked list
+        Node temp = head;
+        while(temp.next != null){
+            if (head.ders.semester == temp.next.ders.semester){
+                head.nextSameSemester = temp.next;
+                Node temp2 = temp.next;
+                while (temp2.nextSameSemester != null &&
+                        temp2.nextSameSemester != temp.next){
+                    temp2 = temp2.nextSameSemester;
+                }
+                temp2.nextSameSemester = head;
+                break;
+            }
+            temp = temp.next;
+        }
+    }
+
+    @Override
+    public void remove(Ders ders){
+        Node temp = head;
+        if (head.ders == ders && head.enable){
+            head = temp.next;
+            if (head.nextSameSemester != null){
+                Node head2 = head.nextSameSemester;
+                Node temp2 = head2.nextSameSemester;
+                while(temp2.nextSameSemester != head ){
+                    temp2 = temp2.nextSameSemester;
+                }
+                temp2.nextSameSemester = head2;
+            }
+        }else{
+            while(temp.next != null){
+                if (temp.next.ders == ders){
+                    if (temp.next.enable){ // control enable
+                        Node temp2 = temp.next;
+                        temp.next = temp.next.next;
+                        Node head2 = head;
+                        while (head2.nextSameSemester != temp2 && head2.next != null){
+                            head2 = head2.next;
+                        }
+                        head2.nextSameSemester = head2.nextSameSemester.nextSameSemester;
+                        temp.nextSameSemester = temp.nextSameSemester.nextSameSemester;
+                    }
+                    else{
+                        System.out.println(ders.ders_kodu + " cannot be removed due to disabled");
+                    }
+                    break;
+                }
+                temp = temp.next;
+            }
+        }
+
+    }
+
+    public void showInSemester(int semester){
+        Node temp = head;
+        System.out.println("Lecture(s) in Semester " + semester);
+        while (temp.next != null){
+            if (temp.ders.semester == semester){
+                Node head2 = temp;
+                do{ System.out.println(temp.ders.ders_kodu + " " + temp.ders.ders_ismi);
+                    temp = temp.nextSameSemester;
+                }
+                while(temp != null && temp != head2);
+                break;
+            }
+            temp = temp.next;
+        }
+    }
+}
+
 class Ders{
     String ders_ismi;
     String ders_kodu;
@@ -259,7 +366,8 @@ class Ders{
     int semester;
     int kredi;
 
-    public Ders(String ders_ismi, String ders_kodu, String ogretim_uyesi, int semester, int kredi){
+    public Ders(String ders_ismi, String ders_kodu,
+                String ogretim_uyesi, int semester, int kredi){
         this.ders_ismi = ders_ismi;
         this.ders_kodu = ders_kodu;
         this.semester = semester;
