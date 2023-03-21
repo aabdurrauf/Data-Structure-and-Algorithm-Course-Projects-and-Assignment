@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -45,18 +44,16 @@ public class Main {
 
         System.out.println("liste boyutu: " + liste.size());
         System.out.println("\nders kodu MAT1087: " + liste.getByCode("MAT1087").ders_ismi);
+        System.out.println("ders kodu MAT1087: " + liste.getByCode("BLM1002").ders_ismi);
         System.out.println("\nsemester 1: ");
-        liste.listSemester(1).
-                forEach(ders -> System.out.println(ders.ders_ismi));
+        liste.listSemester(1);
         System.out.println("\n2-4 index: ");
-        liste.getByRange(2, 4).
-                forEach(ders -> System.out.println(ders.ders_ismi));
+        liste.getByRange(2, 4);
 
         liste.remove(LinearAlg);
         liste.remove(IntroComputer);
-        System.out.println("\nafter removing two nodes: ");
-        liste.listSemester(1).
-                forEach(ders -> System.out.println(ders.ders_ismi));
+        System.out.println("\nafter removing two nodes: \nsemester 1 dersleri:");
+        liste.listSemester(1);
 
         System.out.println("\nusing next method: ");
         Node listeNext = liste.next();
@@ -75,14 +72,14 @@ public class Main {
 
         System.out.println();
         liste.disable(ISG);
+        // disable olan dersi getByCode ile almaya calisir
         System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
         liste.enable(ISG);
-        System.out.println("ISG: \n" + liste.getByCode("ISG1081"));
+        System.out.println("ISG: \n" + liste.getByCode("ISG1081").ders_ismi);
 
         liste.disable(BilDon);
         System.out.println("\nsemester 2 with bilgisayar donanimi disabled: ");
-        liste.listSemester(2)
-                .forEach(ders -> System.out.println(ders.ders_ismi));
+        liste.listSemester(2);
 
         System.out.println();
         liste.disable(IntroAlgorithm);
@@ -188,6 +185,7 @@ class LinkedList{
         return null;
     }
 
+    // disable olan nodelar sayılmayacak
     public int size(){
         int len = 0;
         Node temp = head;
@@ -216,21 +214,18 @@ class LinkedList{
         return null;
     }
 
-    public ArrayList<Ders> listSemester(int semester){
-        ArrayList<Ders> dersler = new ArrayList<>();
+    public void listSemester(int semester){
         Node temp = head;
         while (temp != null){
-            if (temp.ders.semester == semester && /* control enable */ temp.enable){
-                dersler.add(temp.ders);
+            if (temp.ders.semester == semester && temp.enable){ // control enable
+                System.out.println(temp.ders.ders_ismi);
             }
             temp = temp.next;
         }
-        return dersler;
     }
 
     // head 0. index olarak kabul edilir
-    public ArrayList<Ders> getByRange(int start_index, int last_index){
-        ArrayList<Ders> dersler = new ArrayList<>();
+    public void getByRange(int start_index, int last_index){
         int x = last_index - start_index;
         if (start_index < 0 || last_index < 0 || x<0){
             throw new IllegalArgumentException("please enter a valid index");
@@ -242,11 +237,10 @@ class LinkedList{
         }
         for (int i=0; i<=x; i++){
             if (temp.enable){ // control enable
-                dersler.add(temp.ders);
+                System.out.println(temp.ders.ders_ismi);
             }
             temp = temp.next;
         }
-        return dersler;
     }
 
     public void disable(Ders ders){
