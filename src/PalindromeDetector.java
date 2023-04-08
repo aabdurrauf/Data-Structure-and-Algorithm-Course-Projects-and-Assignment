@@ -53,7 +53,7 @@ public class PalindromeDetector {
     public static void main(String[] args) throws FileNotFoundException{
         // main metodu calıştırmadan önce okunacak dosyanın
         // filepath veya dosya ismini aşağıda belirtiniz
-        File file = new File("D:\\Programming\\Java\\DS-HW-3\\src\\odev.txt");
+        File file = new File("odev.txt");
         Scanner scanner = new Scanner(file);
 
         while (scanner.hasNextLine()){
